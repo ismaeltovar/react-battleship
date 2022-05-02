@@ -12,26 +12,17 @@ export default class GridSquare extends Component {
 		this.id = this.props.id;
 		this.humanPlayer = this.props.humanPlayer;
 		this.shipHere = this.props.shipHere;
-		this.getSquareCol = this.getSquareCol.bind(this);
 		this.clickHandler = this.clickHandler.bind(this);
 	}
 
 	clickHandler(e) {		
-		this.setState({attacked: true});
-	}
-
-	getSquareCol() {
-		if (!this.attacked)
-			return 'gray';
-		else if (this.attackInfo.id = this.id) {
-			this.setState({attacked: true});
-		}
+		this.setState({attacked: true, disabled: true});
 	}
 
 	render() {
 		return(
 			<td className="g-squr">
-				<button className={`g-btn ${this.state.attacked && this.shipHere ? 'red' : this.state.attacked ? 'dark-gray': 'light-gray'}`} 
+				<button className={`g-btn ${this.state.attacked && this.shipHere ? 'att-ship' : this.state.attacked ? 'att-no-ship': 'no-att'}`} 
 				onClick={this.clickHandler} 
 				disabled={this.humanPlayer ? true : this.state.disabled}></button>
 			</td>
