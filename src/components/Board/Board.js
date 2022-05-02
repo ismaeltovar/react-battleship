@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { GridSquare } from "..";
+import { cHeaders, rHeaders } from "../headers/headers";
 
 export default class Board extends Component {
 	constructor(props) {
 		super(props);
 		this.type = this.props.type;
-		this.CHeaders = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-		this.RHeaders = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+		this.cHeaders = cHeaders;
+		this.rHeaders = rHeaders;
 	}
 
 	render() {
@@ -16,20 +17,36 @@ export default class Board extends Component {
 					<tbody>
 						<tr className="g-row">
 							<th className="c-header"></th>
-							{this.CHeaders.map(cVal => (
-								<th className="c-header">{cVal}</th>
+							{this.cHeaders.map(cVal => (
+								<th key={cVal} className="c-header">{cVal}</th>
 								))}
 						</tr>
-						{this.RHeaders.map((rVal) => (
-							<tr className="g-row">
-								<td className="r-header">{rVal}</td>
-								{this.CHeaders.map(cVal => (
-									<GridSquare id={`${rVal}${cVal}`} humanPlayer={this.type === 'USER'? true : false}/>
-									))}
-							</tr>
+						{this.rHeaders.map((rVal) => (
+							<GridRow key={rVal} rowVal={rVal} bType={this.type} cHeaders={this.cHeaders}/>
 						))}
 					</tbody>
 				</table>
+		);
+	}
+}
+
+class GridRow extends Component {
+	constructor(props) {
+		super(props);
+		this.rowVal = this.props.rowVal;
+		this.bType = this.props.bType;
+		this.cHeaders = this.props.cHeaders;
+	}
+
+	render() {
+		return(
+			<tr className="g-row">
+				<td className="r-header">{this.rowVal}</td>
+				{this.cHeaders.map((cVal) => {
+					const coordinate = `${cVal}${this.rowVal}`;
+					return <GridSquare key={coordinate} id={coordinate} humanPlayer={this.bType === 'USER'? true : false}/>;
+				})}
+			</tr>
 		);
 	}
 }
