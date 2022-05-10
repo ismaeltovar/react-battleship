@@ -1,14 +1,21 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import { Board } from "..";
+import shipsGenerator from "../shipsGenerator/shipsGenerator";
+import { ShipsContext } from "../../App/App";
+import { userShips } from "../../App/App";
+import consoleHelper from "../../consoleHelper";
 
 export default class UserBoard extends Component {
-  constructor(props) {
-		super(props);
+
+	componentDidUpdate() {
+		consoleHelper(`UserShips: ${userShips}`);
 	}
 
 	render() {
 		return(
+			<ShipsContext.Provider value={userShips}>
 				<Board type='USER'/>
+			</ShipsContext.Provider>
 		);
 	}
 }
