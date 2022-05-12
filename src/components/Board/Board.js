@@ -1,13 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { GridSquare } from "..";
 import { cHeaders, rHeaders } from "../headers/headers";
+import { AttackContext, ShipsContext } from "../../App/App";
+import consoleHelper from "../../consoleHelper";
 
 export default class Board extends Component {
 	constructor(props) {
 		super(props);
-		this.type = this.props.type;
-		this.cHeaders = cHeaders;
-		this.rHeaders = rHeaders;
 	}
 
 	render() {
@@ -17,12 +16,12 @@ export default class Board extends Component {
 					<tbody>
 						<tr className="g-row">
 							<th className="c-header"></th>
-							{this.cHeaders.map(cVal => (
+							{cHeaders.map(cVal => (
 								<th key={cVal} className="c-header">{cVal}</th>
 								))}
 						</tr>
-						{this.rHeaders.map((rVal) => (
-							<GridRow key={rVal} rowVal={rVal} bType={this.type} cHeaders={this.cHeaders}/>
+						{rHeaders.map((rVal) => (
+							<GridRow key={rVal} rowVal={rVal} bType={this.props.type}/>
 						))}
 					</tbody>
 				</table>
@@ -33,20 +32,41 @@ export default class Board extends Component {
 class GridRow extends Component {
 	constructor(props) {
 		super(props);
-		this.rowVal = this.props.rowVal;
-		this.bType = this.props.bType;
-		this.cHeaders = this.props.cHeaders;
 	}
 
 	render() {
 		return(
-			<tr className="g-row">
-				<td className="r-header">{this.rowVal}</td>
-				{this.cHeaders.map((cVal) => {
-					const coordinate = `${cVal}${this.rowVal}`;
-					return <GridSquare key={coordinate} id={coordinate} humanPlayer={this.bType === 'USER'? true : false}/>;
-				})}
-			</tr>
+			<AttackContext.Consumer>
+				{({userTurn, userSqurAttacked, compSqurAttacked, attacked}) => {
+				consoleHelper(`GridSqur: User SQ att: ${userSqurAttacked}`);
+				consoleHelper(`GridSqur: Comp SQ att: ${compSqurAttacked}`);
+				return <ShipsContext.Consumer> 
+					{/** ShipsContext is likely culprit for non-render problems b/c 
+					 * value in Provider is not being updated, thus, Consumers don't re-render
+					*/}
+				{ships => (<tr className="g-row">
+					<td className="r-header">{this.props.rowVal}</td>
+					{cHeaders.map((cVal) => {
+						const coordinate = `${cVal}${this.props.rowVal}`;
+						return <GridSquare key={`${coordinate}-${this.props.bType === 'USER' ? 'U' : 'C'}`} id={coordinate}
+						attacked={
+							this.props.bType === 'USER'
+							?	(userSqurAttacked.find(coor => coor === coordinate) === undefined ? false : true)
+							: (compSqurAttacked.find(coor => coor === coordinate) === undefined ?  false: true)
+						}
+						humanPlayer={
+							this.props.bType === 'USER'? true : false
+						} 
+						shipHere={
+							ships.find((coor) => coor === coordinate) !== undefined ? true : false
+						}
+						onAttack={attacked}
+						/>;
+					})}
+				</tr>)}
+				</ShipsContext.Consumer>
+	}}
+			</AttackContext.Consumer>
 		);
 	}
 }
