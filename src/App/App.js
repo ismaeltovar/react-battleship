@@ -26,9 +26,14 @@ attacked = (e) => {
   const coordinate = e.target.id;
   const board = e.target;
   consoleHelper(`Target: ${board}\tCoordinate: ${coordinate}`);
+
   this.setState((state) => ({
-    userSqurAttacked: [...state.userSqurAttacked, cpuAttack(state.userSqurAttacked)],
     compSqurAttacked: [...state.compSqurAttacked, coordinate]
+  }));
+
+  let cpuSqrAtt = cpuAttack(this.state.userSqurAttacked);
+  this.setState((state) => ({
+    userSqurAttacked: [...state.userSqurAttacked, cpuSqrAtt]
   }));
   // consoleHelper(`User SQ att: ${this.state.userSqurAttacked}`);
   consoleHelper(`Comp SQ att: ${this.state.compSqurAttacked}`);
