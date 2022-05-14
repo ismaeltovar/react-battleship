@@ -4,9 +4,6 @@ import consoleHelper from "../../consoleHelper";
 export default class GridSquare extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			attacked: false,
-		}
 	}
 
 	render() {

@@ -1,4 +1,18 @@
+@import 'vars';
+
 .g-btn {
   width: 5vmin;
   height: 5vmin;
+}
+
+.att-ship {
+  background-color: $red;
+}
+
+.att-no-ship {
+  background-color: $dark-gray;
+}
+
+.no-att {
+  background-color: $light-gray;
 }
