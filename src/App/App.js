@@ -1,5 +1,6 @@
 import React, { Component, createContext } from 'react';
 import { CompBoard, shipsGenerator, UserBoard } from '../components';
+import isWinner from '../components/isWinner/isWinner';
 import consoleHelper from '../consoleHelper';
 import cpuAttack from '../cpuAttack/cpuAttack';
 import '../sass/styles.js';
@@ -14,7 +15,8 @@ constructor(props) {
   super(props);
 
   this.state = {
-    userTurn: true,
+    userWin: false,
+    compWin: false,
     userSqurAttacked: [],
     compSqurAttacked: [],
     attacked: this.attacked,
@@ -31,12 +33,25 @@ attacked = (e) => {
     compSqurAttacked: [...state.compSqurAttacked, coordinate]
   }));
 
-  let cpuSqrAtt = cpuAttack(this.state.userSqurAttacked);
-  this.setState((state) => ({
-    userSqurAttacked: [...state.userSqurAttacked, cpuSqrAtt]
-  }));
-  // consoleHelper(`User SQ att: ${this.state.userSqurAttacked}`);
-  consoleHelper(`Comp SQ att: ${this.state.compSqurAttacked}`);
+  let usrWon = isWinner(this.state.compSqurAttacked);
+
+  if (usrWon) {
+    this.setState({userWin: true});
+    consoleHelper("Winner: User");
+  } else {
+    let cpuSqrAtt = cpuAttack(this.state.userSqurAttacked);
+    this.setState((state) => ({
+      userSqurAttacked: [...state.userSqurAttacked, cpuSqrAtt]
+    }));
+    // consoleHelper(`User SQ att: ${this.state.userSqurAttacked}`);
+    consoleHelper(`Comp SQ att: ${this.state.compSqurAttacked}`);
+
+    let compWon = isWinner(this.state.userSqurAttacked);
+    if (compWon) {
+      this.setState({compWin: true});
+      consoleHelper("Winner: CPU");
+    }
+  }
   
 }
 
@@ -48,6 +63,10 @@ componentDidMount() {
 componentDidUpdate() {
   consoleHelper('App update');
   consoleHelper(`Comp SQ att: ${this.state.compSqurAttacked}`);
+  if (this.state.userWin)
+    WinnerDialog("U");
+  else if (this.state.compWin)
+    WinnerDialog("C");
 }
 
 render() {
@@ -65,3 +84,7 @@ render() {
 }
 
 export default App;
+
+function WinnerDialog(winner) {
+  alert(`${winner === 'U' ? "You Won!": "The Computer Wins!"}`);
+}

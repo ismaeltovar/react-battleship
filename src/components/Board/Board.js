@@ -37,7 +37,7 @@ class GridRow extends Component {
 	render() {
 		return(
 			<AttackContext.Consumer>
-				{({userTurn, userSqurAttacked, compSqurAttacked, attacked}) => {
+				{({userWin, compWin, userSqurAttacked, compSqurAttacked, attacked}) => {
 				consoleHelper(`GridSqur: User SQ att: ${userSqurAttacked}`);
 				consoleHelper(`GridSqur: Comp SQ att: ${compSqurAttacked}`);
 				return <ShipsContext.Consumer> 
@@ -61,6 +61,7 @@ class GridRow extends Component {
 							ships.find((coor) => coor === coordinate) !== undefined ? true : false
 						}
 						onAttack={attacked}
+						disabled={userWin || compWin ? true : false}
 						/>;
 					})}
 				</tr>)}
