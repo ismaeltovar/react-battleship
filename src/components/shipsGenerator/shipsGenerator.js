@@ -13,7 +13,7 @@ export default function shipsGenerator(boardType) {
     consoleHelper('Generating Ships for USER');
   else 
     consoleHelper('Generating Ships for CPU');
-  let lostShips = [2, 2, 3, 4, 5];
+  let lostShips = [2, 3, 3, 4, 5];
   let ships = [];
   let invalidCoordinates = [];
 
@@ -21,7 +21,7 @@ export default function shipsGenerator(boardType) {
     consoleHelper('Initializing ship');
     let newShip = getRandomShipLocal(length, invalidCoordinates);
     invalidCoordinates = [...invalidCoordinates, ...newShip];
-    ships.push(...newShip);
+    ships.push(newShip);
   });
 
   return ships;
