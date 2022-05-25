@@ -17,6 +17,7 @@ constructor(props) {
   this.state = {
     userWin: false,
     compWin: false,
+    previousSqurAtt: undefined,
     userSqurAttacked: [],
     compSqurAttacked: [],
     attacked: this.attacked,
@@ -33,20 +34,35 @@ attacked = (e) => {
     compSqurAttacked: [...state.compSqurAttacked, coordinate]
   }));
 
-  let usrWon = isWinner(this.state.compSqurAttacked);
+  let usrWon = isWinner(this.state.compSqurAttacked, false);
 
   if (usrWon) {
     this.setState({userWin: true});
     consoleHelper("Winner: User");
   } else {
-    let cpuSqrAtt = cpuAttack(this.state.userSqurAttacked);
-    this.setState((state) => ({
-      userSqurAttacked: [...state.userSqurAttacked, cpuSqrAtt]
-    }));
-    // consoleHelper(`User SQ att: ${this.state.userSqurAttacked}`);
-    consoleHelper(`Comp SQ att: ${this.state.compSqurAttacked}`);
 
-    let compWon = isWinner(this.state.userSqurAttacked);
+    let cpuAttCoor = cpuAttack(this.state.userSqurAttacked, this.state.previousSqurAtt);
+
+
+    this.setState((state) => ({
+      userSqurAttacked: [...state.userSqurAttacked, cpuAttCoor.coor],
+      previousSqurAtt: cpuAttCoor
+    }));
+    // else if (cpuAttCoor[1] === undefined && this.state.compFoundShip !== [])
+    //   this.setState((state) => ({
+    //     userSqurAttacked: [...state.userSqurAttacked, cpuAttCoor.coor],
+    //     previousSqurAtt: cpuAttCoor
+    //   }));
+    // else
+    //   this.setState((state) => ({
+    //     userSqurAttacked: [...state.userSqurAttacked, cpuAttCoor.coor],
+    //     previousSqurAtt: cpuAttCoor
+    //   }));
+
+    // consoleHelper(`User SQ att: ${this.state.userSqurAttacked}`);
+    consoleHelper(`Coordinate: ${JSON.stringify(cpuAttCoor)}`);
+
+    let compWon = isWinner(this.state.userSqurAttacked, true);
     if (compWon) {
       this.setState({compWin: true});
       consoleHelper("Winner: CPU");
@@ -67,6 +83,8 @@ componentDidUpdate() {
     WinnerDialog("U");
   else if (this.state.compWin)
     WinnerDialog("C");
+  else if (this.state.userWin && this.state.compWin)
+    WinnerDialog("");
 }
 
 render() {
@@ -86,5 +104,5 @@ render() {
 export default App;
 
 function WinnerDialog(winner) {
-  alert(`${winner === 'U' ? "You Won!": "The Computer Wins!"}`);
+  alert(`${winner === 'U' ? "You Won!": winner === 'C' ? "The Computer Wins!" : "It's a Draw!"}`);
 }
