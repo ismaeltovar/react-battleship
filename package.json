@@ -1,7 +1,7 @@
 {
   "homepage": "http://ismaeltovar.github.io/react-battleship",
   "name": "react-battleship",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
