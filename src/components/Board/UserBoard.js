@@ -13,9 +13,12 @@ export default class UserBoard extends Component {
 
 	render() {
 		return(
-			<ShipsContext.Provider value={userShips}>
-				<Board type='USER'/>
-			</ShipsContext.Provider>
+			<div id="u-board" className="board">
+				<header className="board-h">user</header>
+				<ShipsContext.Provider value={userShips}>
+					<Board type='USER'/>
+				</ShipsContext.Provider>
+			</div>
 		);
 	}
 }

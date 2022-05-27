@@ -12,9 +12,12 @@ export default class CompBoard extends Component {
 
 	render() {
 		return(
-			<ShipsContext.Provider value={compShips}>
-				<Board type='CPU'/>
-			</ShipsContext.Provider>
+			<div id="c-board" className="board">
+				<header className="board-h">computer</header>
+				<ShipsContext.Provider value={compShips}>
+					<Board type='CPU'/>
+				</ShipsContext.Provider>
+			</div>
 		);
 	}
 }

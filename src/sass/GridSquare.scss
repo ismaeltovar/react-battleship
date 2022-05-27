@@ -6,13 +6,17 @@
 }
 
 .att-ship {
-  background-color: $red;
+  background-color: $g-btn-att-ship;
 }
 
 .att-no-ship {
-  background-color: $dark-gray;
+  background-color: $g-btn-att-no-ship;
 }
 
 .no-att {
-  background-color: $light-gray;
+  background-color: $g-btn-col;
+  
+  &:hover {
+    background-color: $g-btn-hover;
+  }
 }

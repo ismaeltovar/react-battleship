@@ -1,3 +1,9 @@
-.grid {
-  width: 10vmin;
+.board {
+  display: block;
+  height: clamp(40%, 45%, 50%); 
+}
+
+.board-h {
+  font: normal small-caps 700 2em sans-serif;
+  padding: clamp(.5em, 5vh, .1em) 0;
 }
