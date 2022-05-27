@@ -1,9 +1,13 @@
 .board {
   display: block;
-  height: clamp(40%, 45%, 50%); 
+  height: clamp(40%, 45%, 50%);
 }
 
 .board-h {
-  font: normal small-caps 700 2em sans-serif;
-  padding: clamp(.5em, 5vh, .1em) 0;
+  font: normal small-caps 700 2.5em sans-serif;
+  padding-bottom: 1vh;
+}
+
+.g-header {
+  font: normal small-caps 600 1.4em sans-serif;
 }

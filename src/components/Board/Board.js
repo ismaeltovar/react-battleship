@@ -15,9 +15,9 @@ export default class Board extends Component {
 					<caption>{this.type}</caption>
 					<tbody>
 						<tr className="g-row">
-							<th className="c-header"></th>
+							<th className="c-header g-header"></th>
 							{cHeaders.map(cVal => (
-								<th key={cVal} className="c-header">{cVal}</th>
+								<th key={cVal} className="c-header g-header">{cVal}</th>
 								))}
 						</tr>
 						{rHeaders.map((rVal) => (
@@ -53,7 +53,7 @@ class GridRow extends Component {
 
 					return (
 					<tr className="g-row">
-						<td className="r-header">{this.props.rowVal}</td>
+						<td className="r-header g-header">{this.props.rowVal}</td>
 						{cHeaders.map((cVal) => {
 							const coordinate = `${cVal}${this.props.rowVal}`;
 							return <GridSquare key={`${coordinate}-${this.props.bType === 'USER' ? 'U' : 'C'}`} id={coordinate}
