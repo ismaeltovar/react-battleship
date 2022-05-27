@@ -49,6 +49,10 @@ function getRandomShipLocal(length, invCoordinates) {
     let columnStart = Math.floor(Math.random() * 10);
     let rowStart = Math.floor(Math.random() * 10);
 
+    let coordinate = `${cHeaders[columnStart]}${rowStart}`;
+    if (invCoordinates.find(coord => coord === coordinate) !== undefined)
+      break;
+    
     let sqrsNeeded = length - 1;
 
     if (rowStart - sqrsNeeded < 0) {
@@ -80,7 +84,6 @@ function getRandomShipLocal(length, invCoordinates) {
         directions = directions.filter((value) => {
           return value !== 0;
         });
-        //Here's were I left off.
       else if (columnCoor <= columnStart + length && columnCoor >= columnStart - 1 && rowCoor === rowStart && directions.find(el => el === 1) !== undefined)
         directions = directions.filter((value) => {
           return value !== 1;
@@ -124,49 +127,3 @@ function getRandomShipLocal(length, invCoordinates) {
   consoleHelper('Ship constructed: ' + ship.toString());
   return ship;
 }
-    //For reference:     
-
-    // for (let rotation = 0; rotation < 4; rotation++) {
-
-    //   for (let sqrsBuilt = 0; sqrsBuilt < length; sqrsBuilt++) {
-    //     let coordinate;
-    //     if (rotation === 0)
-    //       coordinate = `${cHeaders[xStart]}${yStart + sqrsBuilt}`;
-    //     else if (rotation === 1)
-    //       coordinate = `${cHeaders[xStart + sqrsBuilt]}${yStart}`;
-    //     else if (rotation === 2)
-    //       coordinate = `${cHeaders[xStart]}${yStart - sqrsBuilt}`;
-    //     else if (rotation === 3)
-    //       coordinate = `${cHeaders[xStart - sqrsBuilt]}${yStart}`;
-    //     else {
-    //       console.error('Invalid rotation in ship location check loop in getRandomShipLocal');
-    //     }
-
-    //     if (invCoordinates.find(coor => coordinate === coor) === undefined) {
-    //       sqrsLeft--;
-    //       continue;
-    //     }
-    //     else
-    //       break;
-    //   }
-
-      // if (sqrsLeft === 0) {
-      //   foundValidLoc = true;
-      //   direction = rotation;
-      //   break;
-      // }
-  // for (let i = 0; i < length; i++) {
-  //   let coordinate;
-  //   if (direction === 0)
-  //     coordinate = `${cHeaders[xStart]}${yStart + i}`;
-  //   else if (direction === 1)
-  //     coordinate = `${cHeaders[xStart + i]}${yStart}`;
-  //   else if (direction === 2)
-  //     coordinate = `${cHeaders[xStart]}${yStart - i}`;
-  //   else if (direction === 3)
-  //     coordinate = `${cHeaders[xStart - i]}${yStart}`;
-  //   else {
-  //     console.error('Invalid rotation in ship building loop in getRandomShipLocal');
-  //   }
-  //   ship.push(coordinate);
-  // }
