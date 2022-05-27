@@ -1,5 +1,5 @@
 import { cHeaders } from "../components/headers/headers";
-import { userShips, compShips } from "../App/App";
+import { userShips } from "../App/App";
 import consoleHelper from "../consoleHelper";
 
 function Coordinate(coor, shipHere, shipAttProcess, shipDirectionAtt, shipNumAtt, shipStartCoor, shipLength, shipDirection) {
@@ -48,11 +48,10 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
     if (shipAttProcess === true) {
       let hIndex = cHeaders.findIndex(h => h === coor.charAt(0));
 
-
-      let upPossible = parseInt(coor.charAt(1)) - (shipLength - 1) < 0 ? false : true;
-      let rightPossible = hIndex + (shipLength - 1) > 9 ? false : true;
-      let downPossible = parseInt(coor.charAt(1)) + (shipLength - 1) > 9 ? false : true;
-      let leftPossible = hIndex - (shipLength - 1) < 0 ? false : true;
+      let upPossible = parseInt(coor.charAt(1)) - 1 < 0 ? false : true;
+      let rightPossible = hIndex + 1 > 9 ? false : true;
+      let downPossible = parseInt(coor.charAt(1)) + 1 > 9 ? false : true;
+      let leftPossible = hIndex - 1 < 0 ? false : true;
 
       sqrsAttacked.forEach(sqr => {
         let coorColumn = cHeaders.findIndex(h => h === coor.charAt(0));
@@ -118,11 +117,13 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
       });
 
       //see if there is coordinate already attacked in the direction
-      let nextCoor = `${column}${row - 1}`;
+      let nextCoor = `${cHeaders[column]}${row - 1}`;
       let sqrAttInDirection = sqrsAttacked.find((sqr) => sqr === nextCoor) === undefined ? false : true;
 
       if (coorIsShip)
         shipNumAtt++;
+      else
+        shipHere = false;
 
       if (!coorIsShip || sqrAttInDirection || row === 0) {
         shipDirection.up = -1;
@@ -147,11 +148,13 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
       });
 
       //see if there is coordinate already attacked in the direction
-      let nextCoor = `${column + 1}${row}`;
+      let nextCoor = `${cHeaders[column + 1]}${row}`;
       let sqrAttInDirection = sqrsAttacked.find((sqr) => sqr === nextCoor) === undefined ? false : true;
 
       if (coorIsShip)
         shipNumAtt++;
+      else
+        shipHere = false;
 
       if (!coorIsShip || sqrAttInDirection || column === 9) {
         shipDirection.right = -1;
@@ -176,11 +179,13 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
       });
 
       //see if there is coordinate already attacked in the direction
-      let nextCoor = `${column}${row + 1}`;
+      let nextCoor = `${cHeaders[column]}${row + 1}`;
       let sqrAttInDirection = sqrsAttacked.find((sqr) => sqr === nextCoor) === undefined ? false : true;
 
       if (coorIsShip)
         shipNumAtt++;
+      else
+        shipHere = false;
 
       if (!coorIsShip || sqrAttInDirection || row === 9) {
         shipDirection.down = -1;
@@ -205,11 +210,13 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
       });
 
       //see if there is coordinate already attacked in the direction
-      let nextCoor = `${column - 1}${row}`;
+      let nextCoor = `${cHeaders[column - 1]}${row}`;
       let sqrAttInDirection = sqrsAttacked.find((sqr) => sqr === nextCoor) === undefined ? false : true;
 
       if (coorIsShip)
         shipNumAtt++;
+      else
+        shipHere = false;
 
       if (!coorIsShip || sqrAttInDirection || column === 0) {
         shipDirection.left = -1;
