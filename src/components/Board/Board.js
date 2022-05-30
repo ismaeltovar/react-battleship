@@ -11,20 +11,22 @@ export default class Board extends Component {
 
 	render() {
 		return(
-				<table className="grid">
+			<>
+				<table>
 					<caption>{this.type}</caption>
-					<tbody>
+					<tbody className="grid">
 						<tr className="g-row">
-							<th className="c-header g-header"></th>
+							{/* <th className="c-header g-header"></th> */}
 							{cHeaders.map(cVal => (
 								<th key={cVal} className="c-header g-header">{cVal}</th>
 								))}
 						</tr>
 						{rHeaders.map((rVal) => (
 							<GridRow key={rVal} rowVal={rVal} bType={this.props.type}/>
-						))}
+							))}
 					</tbody>
 				</table>
+			</>
 		);
 	}
 }
