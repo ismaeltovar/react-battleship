@@ -30,46 +30,28 @@ attacked = (e) => {
   const board = e.target;
   consoleHelper(`Target: ${board}\tCoordinate: ${coordinate}`);
 
-  this.setState((state) => ({
-    compSqurAttacked: [...state.compSqurAttacked, coordinate]
-  }));
+  this.setState((state) => {
+   let updatedCompSqAtt = [...state.compSqurAttacked, coordinate];
+    let usrWon = isWinner(updatedCompSqAtt, false);
 
-  let usrWon = isWinner(this.state.compSqurAttacked, false);
-
-  if (usrWon) {
-    this.setState({userWin: true});
-    consoleHelper("Winner: User");
-  } else {
-
-    let cpuAttCoor = cpuAttack(this.state.userSqurAttacked, this.state.previousSqurAtt);
-
-
-    this.setState((state) => ({
-      userSqurAttacked: [...state.userSqurAttacked, cpuAttCoor.coor],
-      previousSqurAtt: cpuAttCoor
-    }));
-    // else if (cpuAttCoor[1] === undefined && this.state.compFoundShip !== [])
-    //   this.setState((state) => ({
-    //     userSqurAttacked: [...state.userSqurAttacked, cpuAttCoor.coor],
-    //     previousSqurAtt: cpuAttCoor
-    //   }));
-    // else
-    //   this.setState((state) => ({
-    //     userSqurAttacked: [...state.userSqurAttacked, cpuAttCoor.coor],
-    //     previousSqurAtt: cpuAttCoor
-    //   }));
-
-    // consoleHelper(`User SQ att: ${this.state.userSqurAttacked}`);
-    consoleHelper(`Coordinate: ${JSON.stringify(cpuAttCoor)}`);
-
-    let compWon = isWinner(this.state.userSqurAttacked, true);
-    if (compWon) {
-      this.setState({compWin: true});
-      consoleHelper("Winner: CPU");
+    if (usrWon) {
+      consoleHelper("Winner: User");
+      return {compSqurAttacked: updatedCompSqAtt, userWin: true};
+    } else {
+      let cpuAttCoor = cpuAttack(this.state.userSqurAttacked, this.state.previousSqurAtt);
+      let updatedUserSqAtt = [...state.userSqurAttacked, cpuAttCoor.coor];
+      let compWon =  isWinner(this.state.userSqurAttacked, true);
+      consoleHelper(`Coordinate: ${JSON.stringify(cpuAttCoor)}`);
+      
+      if (compWon) {
+        consoleHelper("Winner: CPU");
+        return {compSqurAttacked: updatedCompSqAtt, userSqurAttacked: updatedUserSqAtt, previousSqurAtt: cpuAttCoor, compWin: true};
+      } else {
+        return {compSqurAttacked: updatedCompSqAtt, userSqurAttacked: updatedUserSqAtt, previousSqurAtt: cpuAttCoor};
+      }
     }
+  });
   }
-  
-}
 
 componentDidMount() {
   userShips = shipsGenerator('USER');

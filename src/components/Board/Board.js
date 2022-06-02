@@ -11,7 +11,6 @@ export default class Board extends Component {
 
 	render() {
 		return(
-			<>
 				<table>
 					<caption>{this.type}</caption>
 					<tbody className="grid">
@@ -26,7 +25,6 @@ export default class Board extends Component {
 							))}
 					</tbody>
 				</table>
-			</>
 		);
 	}
 }
@@ -50,7 +48,7 @@ class GridRow extends Component {
 					let shipsCoor = [];
 
 					ships.forEach(ship => {
-						shipsCoor.push(...ship);
+						shipsCoor.push(...ship.coordinates);
 					});
 
 					return (

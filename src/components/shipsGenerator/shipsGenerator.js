@@ -13,15 +13,22 @@ export default function shipsGenerator(boardType) {
     consoleHelper('Generating Ships for USER');
   else 
     consoleHelper('Generating Ships for CPU');
-  let lostShips = [2, 3, 3, 4, 5];
+  let lostShips = [
+    {length: 2, name: 'destroyer', coordinates: undefined}, 
+    {length: 3, name: 'submarine', coordinates: undefined}, 
+    {length: 3, name: 'cruiser', coordinates: undefined}, 
+    {length: 4, name: 'battleship', coordinates: undefined}, 
+    {length: 5, name: 'carrier', coordinates: undefined}
+  ];
   let ships = [];
   let invalidCoordinates = [];
 
-  lostShips.forEach((length) => {
+  lostShips.forEach((ship) => {
     consoleHelper('Initializing ship');
-    let newShip = getRandomShipLocal(length, invalidCoordinates);
+    let newShip = getRandomShipLocal(ship.length, invalidCoordinates);
     invalidCoordinates = [...invalidCoordinates, ...newShip];
-    ships.push(newShip);
+    ship.coordinates = newShip;
+    ships.push(ship);
   });
 
   return ships;

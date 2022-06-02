@@ -7,7 +7,7 @@ export default function isWinner(sqrsAttacked, isUserSqrs) {
   let ships = isUserSqrs ? userShips : compShips;
 
   ships.forEach(ship => {
-    ship.forEach((coor) => {
+    ship.coordinates.forEach((coor) => {
       if (sqrsAttacked.find(attCoor => attCoor === coor) === undefined)
         unsunkShip = true;
     });

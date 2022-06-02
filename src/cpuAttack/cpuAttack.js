@@ -34,7 +34,7 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
     coor = findRandomCoordinate(sqrsAttacked);
 
     userShips.forEach(ship => {
-      if (ship.find(coord => coord === coor) !== undefined) {
+      if (ship.coordinates.find(coord => coord === coor) !== undefined) {
         shipHere = true;
         shipAttProcess = true;
         shipNumAtt++;
@@ -111,8 +111,8 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
       consoleHelper(coor);
 
       let coorIsShip = false;
-      userShips.forEach((coors) => {
-        if (coors.find(coord => coord === coor) !== undefined)
+      userShips.forEach((ship) => {
+        if (ship.coordinates.find(coord => coord === coor) !== undefined)
           coorIsShip = true;
       });
 
@@ -142,8 +142,8 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
       shipDirectionAtt++;
 
       let coorIsShip = false;
-      userShips.forEach((coors) => {
-        if (coors.find(coord => coord === coor) !== undefined)
+      userShips.forEach((ship) => {
+        if (ship.coordinates.find(coord => coord === coor) !== undefined)
           coorIsShip = true;
       });
 
@@ -173,8 +173,8 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
       shipDirectionAtt++;
 
       let coorIsShip = false;
-      userShips.forEach((coors) => {
-        if (coors.find(coord => coord === coor) !== undefined)
+      userShips.forEach((ship) => {
+        if (ship.coordinates.find(coord => coord === coor) !== undefined)
           coorIsShip = true;
       });
 
@@ -204,8 +204,8 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
       shipDirectionAtt++;
 
       let coorIsShip = false;
-      userShips.forEach((coors) => {
-        if (coors.find(coord => coord === coor) !== undefined)
+      userShips.forEach((ship) => {
+        if (ship.coordinates.find(coord => coord === coor) !== undefined)
           coorIsShip = true;
       });
 
