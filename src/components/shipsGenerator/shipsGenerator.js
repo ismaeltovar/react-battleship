@@ -58,7 +58,7 @@ function getRandomShipLocal(length, invCoordinates) {
 
     let coordinate = `${cHeaders[columnStart]}${rowStart}`;
     if (invCoordinates.find(coord => coord === coordinate) !== undefined)
-      break;
+      continue;
     
     let sqrsNeeded = length - 1;
 
@@ -108,7 +108,7 @@ function getRandomShipLocal(length, invCoordinates) {
     consoleHelper(`Directions: ${directions.toString()}`);
     
     if (directions.length === 0)
-      break;
+      continue;
     else 
       foundValidLoc = true;
     consoleHelper(`FoundValidLoc: ${foundValidLoc}`);
