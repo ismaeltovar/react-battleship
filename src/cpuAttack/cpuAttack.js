@@ -29,6 +29,9 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
   let shipStartCoor = '';
   let shipDirection = {};
 
+  if (prevCoor !== undefined)
+    consoleHelper(`Previous Square: ${JSON.stringify(prevCoor)}`);
+
   if (prevCoor === undefined || prevCoor.shipAttProcess === false) {
     
     coor = findRandomCoordinate(sqrsAttacked);
@@ -104,9 +107,9 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
 
     if (prevCoor.shipDirection.up >= 0) {
 
-      let column = prevCoor.shipStartCoor.charAt(0);
-      let row = parseInt(prevCoor.shipStartCoor.charAt(1)) - prevCoor.shipDirectionAtt;
-      coor = `${column}${row}`;
+      let column = hIndex;
+      let row = parseInt(prevCoor.shipStartCoor.charAt(1)) - shipDirectionAtt;
+      coor = `${cHeaders[column]}${row}`;
       shipDirectionAtt++;
       consoleHelper(coor);
 
@@ -136,7 +139,7 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
 
     } else if (prevCoor.shipDirection.right >= 0) {
       
-      let column = hIndex + prevCoor.shipDirectionAtt;
+      let column = hIndex + shipDirectionAtt;
       let row = parseInt(prevCoor.shipStartCoor.charAt(1));
       coor = `${cHeaders[column]}${row}`;
       shipDirectionAtt++;
@@ -167,9 +170,9 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
 
     } else if (prevCoor.shipDirection.down >= 0) {
 
-      let column = prevCoor.shipStartCoor.charAt(0);
-      let row = parseInt(prevCoor.shipStartCoor.charAt(1)) + prevCoor.shipDirectionAtt;
-      coor = `${column}${row}`;
+      let column = hIndex;
+      let row = parseInt(prevCoor.shipStartCoor.charAt(1)) + shipDirectionAtt;
+      coor = `${cHeaders[column]}${row}`;
       shipDirectionAtt++;
 
       let coorIsShip = false;
@@ -198,7 +201,7 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
 
     } else if (prevCoor.shipDirection.left >= 0) {
 
-      let column = hIndex - prevCoor.shipDirectionAtt;
+      let column = hIndex - shipDirectionAtt;
       let row = parseInt(prevCoor.shipStartCoor.charAt(1))
       coor = `${cHeaders[column]}${row}`;
       shipDirectionAtt++;
@@ -227,16 +230,24 @@ export default function cpuAttack(sqrsAttacked, prevCoor) {
         shipDirection.down = -1;
       }
 
-    } else if (shipNumAtt < shipLength) {
-      console.error('Error: Bug likely in the cpuAttack logic.');
-    } else if (shipNumAtt > shipLength) {
-      console.error('Error: Bug likely in the shipsGenerator logic.');
-    }
+    } else {
+      if (shipNumAtt < shipLength) {
+        console.error('Error: Bug likely in the cpuAttack logic.');
+      } else if (shipNumAtt > shipLength) {
+        console.error('Error: Bug likely in the shipsGenerator logic.');
+      }
+    } 
 
-    if (shipNumAtt === shipLength) {
+    let allDirectionsInvalid = true;
+    Object.entries(shipDirection).forEach(([key, val]) => {
+      if (val !== -1) {
+        allDirectionsInvalid = false;
+      }
+    });
+
+    if (shipNumAtt === shipLength || allDirectionsInvalid) {
       shipAttProcess = false;
     }
-
   }
 
   return new Coordinate(coor, shipHere, shipAttProcess, shipDirectionAtt, shipNumAtt, shipStartCoor, shipLength, shipDirection);
