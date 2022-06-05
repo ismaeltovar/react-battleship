@@ -1,5 +1,5 @@
 import React, { Component, createContext } from 'react';
-import { CompBoard, shipsGenerator, UserBoard } from '../components';
+import { shipsGenerator, Board} from '../components';
 import isWinner from '../components/isWinner/isWinner';
 import consoleHelper from '../consoleHelper';
 import cpuAttack from '../cpuAttack/cpuAttack';
@@ -41,7 +41,7 @@ attacked = (e) => {
       let cpuAttCoor = cpuAttack(this.state.userSqurAttacked, this.state.previousSqurAtt);
       let updatedUserSqAtt = [...state.userSqurAttacked, cpuAttCoor.coor];
       let compWon =  isWinner(this.state.userSqurAttacked, true);
-      consoleHelper(`Coordinate: ${JSON.stringify(cpuAttCoor)}`);
+      consoleHelper(`Comp Coordinate Att: ${JSON.stringify(cpuAttCoor)}`);
       
       if (compWon) {
         consoleHelper("Winner: CPU");
@@ -74,8 +74,12 @@ render() {
     <div className="App">
       <main id='boards'>
         <AttackContext.Provider value={this.state}>
-          <UserBoard/>
-          <CompBoard/>
+          <ShipsContext.Provider value={userShips}>
+            <Board type='user'/>
+          </ShipsContext.Provider>
+          <ShipsContext.Provider value={compShips}>
+            <Board type='computer'/>
+          </ShipsContext.Provider>
         </AttackContext.Provider>
       </main>
     </div>

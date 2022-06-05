@@ -11,6 +11,8 @@ export default class Board extends Component {
 
 	render() {
 		return(
+			<div id={`${this.props.type === 'user' ? 'u' : 'c'}-board`} className="board">
+				<header className="board-h">{this.props.type}</header>
 				<table>
 					<caption>{this.type}</caption>
 					<tbody className="grid">
@@ -25,6 +27,7 @@ export default class Board extends Component {
 							))}
 					</tbody>
 				</table>
+			</div>
 		);
 	}
 }
@@ -41,9 +44,6 @@ class GridRow extends Component {
 				consoleHelper(`GridSqur: User SQ att: ${userSqurAttacked}`);
 				consoleHelper(`GridSqur: Comp SQ att: ${compSqurAttacked}`);
 				return <ShipsContext.Consumer> 
-					{/** ShipsContext is likely culprit for non-render problems b/c 
-					 * value in Provider is not being updated, thus, Consumers don't re-render
-					*/}
 				{ships => {
 					let shipsCoor = [];
 
@@ -56,14 +56,14 @@ class GridRow extends Component {
 						<td className="r-header g-header">{this.props.rowVal}</td>
 						{cHeaders.map((cVal) => {
 							const coordinate = `${cVal}${this.props.rowVal}`;
-							return <GridSquare key={`${coordinate}-${this.props.bType === 'USER' ? 'U' : 'C'}`} id={coordinate}
+							return <GridSquare key={`${coordinate}-${this.props.bType === 'user' ? 'u' : 'c'}`} id={coordinate}
 							attacked={
-								this.props.bType === 'USER'
+								this.props.bType === 'user'
 								?	(userSqurAttacked.find(coor => coor === coordinate) === undefined ? false : true)
 								: (compSqurAttacked.find(coor => coor === coordinate) === undefined ?  false: true)
 							}
 							humanPlayer={
-								this.props.bType === 'USER'? true : false
+								this.props.bType === 'user'? true : false
 							} 
 							shipHere={
 								shipsCoor.find((coor) => coor === coordinate) !== undefined ? true : false
