@@ -3,30 +3,53 @@
 .g-btn {
   width: 5vmin;
   height: 5vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .att-ship {
   background-color: $g-btn-att-ship;
+
+  .icon-c {
+    visibility: hidden;
+  }
 }
 
 .att-no-ship {
   background-color: $g-btn-att-no-ship;
+
+  .icon-c {
+    visibility: hidden;
+  }
 }
 
 .no-att {
   background-color: $g-btn-col;
 
-  &.c .icon-c {
+  .icon-c {
     visibility: hidden;
-    
-    &:hover {
-      visibility: visible;
-    }
   }
 
+  &.c:hover .icon-c {
+    visibility: visible;
+  }
+
+  &.c:focus .icon-c {
+    visibility: hidden;
+  }
+  
   &.c:hover {
     background-color: $g-btn-hover;
+    cursor: pointer;
   }
+}
+
+.icon-c.locate {
+  height: inherit;
+  width: 80% !important;
+  visibility: hidden;
+  z-index: 1;
 }
 
 .u .icon-c {
