@@ -1,5 +1,5 @@
 import React, { Component, createContext } from 'react';
-import { shipsGenerator, Board} from '../components';
+import { shipsGenerator, Board, Drawer} from '../components';
 import isWinner from '../components/isWinner/isWinner';
 import consoleHelper from '../consoleHelper';
 import cpuAttack from '../cpuAttack/cpuAttack';
@@ -53,6 +53,10 @@ attacked = (e) => {
   });
   }
 
+  newGame() {
+    return;
+  }
+
 componentDidMount() {
   userShips = shipsGenerator('USER');
   compShips = shipsGenerator('CPU');
@@ -72,6 +76,7 @@ componentDidUpdate() {
 render() {
   return (
     <div className="App">
+      <Drawer restartGame={this.newGame}/>
       <main id='boards'>
         <AttackContext.Provider value={this.state}>
           <ShipsContext.Provider value={userShips}>
