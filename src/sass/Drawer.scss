@@ -1,0 +1,59 @@
+@import 'vars';
+
+#drawer-c {
+  position: absolute;
+  height: 100%;
+  width: 30%;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  z-index: -1;
+}
+
+#drw-switch {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 2em 0 0 2em;
+  z-index: 1;
+}
+
+#drawer {
+  background-color: $drawer-bg;
+  position: absolute;
+  height: 100%;
+  padding: 0 10vw;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+#d-items {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+}
+
+.d-btn {
+  padding: 1em;
+  background-color: $drawer-btn-bg;
+  border-color: $darker-gray;
+  font-weight: 700;
+}
+
+.icon-c {
+  margin: auto;
+  height: inherit;
+  width: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

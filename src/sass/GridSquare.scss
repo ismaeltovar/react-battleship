@@ -15,8 +15,20 @@
 
 .no-att {
   background-color: $g-btn-col;
-  
+
+  &.c .icon-c {
+    visibility: hidden;
+    
+    &:hover {
+      visibility: visible;
+    }
+  }
+
   &.c:hover {
     background-color: $g-btn-hover;
   }
+}
+
+.u .icon-c {
+  visibility: hidden;
 }
