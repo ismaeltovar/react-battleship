@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import ReactSwitch from 'react-switch';
-import { IoMenu } from "react-icons/io5";
-
-function Icon() {
-  return (
-    <div className='icon-c'>
-      <IoMenu />
-    </div>
-  );
-}
+import { Icon } from '..';
 
 export default class Drawer extends Component {
   constructor(props) {
@@ -30,12 +22,12 @@ export default class Drawer extends Component {
 
   render() {
     return (
-      <div id='drawer-c'>
+      <div id='drawer-c' className={`${this.state.showDrawer ? 'active' : 'disabled'}`}>
         <label id='drw-switch'>
           <ReactSwitch onChange={this.handleChange.bind(this)}
             checked={this.state.showDrawer}
             onColor={'#FFF'} offColor={'#a9a9a9'} onHandleColor={'#add8e6'} offHandleColor={'#808080'}
-            checkedIcon={<Icon/>} uncheckedIcon={<Icon/>}/>
+            checkedIcon={<Icon type='menu'/>} uncheckedIcon={<Icon type='menu'/>}/>
         </label>
         {this.state.showDrawer &&
           <div id='drawer'>

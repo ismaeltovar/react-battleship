@@ -9,15 +9,22 @@
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-  z-index: -1;
+
+  &.active {
+    z-index: 3;
+  }
+
+  &.disabled {
+    z-index: 1;
+  }
 }
 
 #drw-switch {
   position: absolute;
   left: 0;
   top: 0;
-  margin: 2em 0 0 2em;
-  z-index: 1;
+  margin: 2vw 0 0 2vw;
+  z-index: 4;
 }
 
 #drawer {
@@ -49,7 +56,8 @@
   font-weight: 700;
 }
 
-.icon-c {
+.icon-c.menu {
+  width: 70% !important;
   margin: auto;
   height: inherit;
   width: inherit;
