@@ -54,7 +54,16 @@ attacked = (e) => {
   }
 
   newGame() {
-    return;
+    consoleHelper('Generating New Game...');
+    userShips = shipsGenerator('USER');
+    compShips = shipsGenerator('CPU');
+
+    this.setState({
+      userWin: false,
+      compWin: false,
+      previousSqurAtt: undefined,
+      userSqurAttacked: [],
+      compSqurAttacked: []});
   }
 
 componentDidMount() {
@@ -76,7 +85,7 @@ componentDidUpdate() {
 render() {
   return (
     <div className="App">
-      <Drawer restartGame={this.newGame}/>
+      <Drawer newGame={this.newGame.bind(this)}/>
       <main id='boards'>
         <AttackContext.Provider value={this.state}>
           <ShipsContext.Provider value={userShips}>
