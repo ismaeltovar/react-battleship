@@ -63,7 +63,8 @@ attacked = (e) => {
       compWin: false,
       previousSqurAtt: undefined,
       userSqurAttacked: [],
-      compSqurAttacked: []});
+      compSqurAttacked: [],
+      closeDrawer: true});
   }
 
 componentDidMount() {
@@ -85,7 +86,7 @@ componentDidUpdate() {
 render() {
   return (
     <div className="App">
-      <Drawer newGame={this.newGame.bind(this)}/>
+      <Drawer newGame={this.newGame.bind(this)} closeDrawer={this.state.closeDrawer}/>
       <main id='boards'>
         <AttackContext.Provider value={this.state}>
           <ShipsContext.Provider value={userShips}>

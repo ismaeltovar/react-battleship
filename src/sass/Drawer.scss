@@ -3,7 +3,7 @@
 #drawer-c {
   position: absolute;
   height: 100%;
-  width: 30%;
+  width: 15%;
   left: 0;
   top: 0;
   display: flex;
@@ -21,6 +21,7 @@
 
 #drw-switch {
   position: absolute;
+  max-width: 100%;
   left: 0;
   top: 0;
   margin: 2vw 0 0 2vw;
@@ -31,7 +32,7 @@
   background-color: $drawer-bg;
   position: absolute;
   height: 100%;
-  padding: 0 10vw;
+  width: 100%;
   left: 0;
   top: 0;
   display: flex;
@@ -43,7 +44,6 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  padding: 1em;
   display: flex;
   flex-flow: column wrap;
   justify-content: space-evenly;
@@ -51,9 +51,19 @@
 
 .d-btn {
   padding: 1em;
+  margin: 0 auto;
+  width: 90%;
   background-color: $drawer-btn-bg;
+  color: $drawer-btn-txt;
   border-color: $darker-gray;
+  border-radius: 1.5em;
   font-weight: 700;
+  font-size: 1em;
+  z-index: 4;
+  
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .icon-c.menu {
