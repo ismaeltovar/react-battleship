@@ -19,6 +19,12 @@
   }
 }
 
+@media (max-width: 540px) {
+  #drawer-c {
+    width: 30% !important;
+  }
+}
+
 #drw-switch {
   position: absolute;
   max-width: 100%;
