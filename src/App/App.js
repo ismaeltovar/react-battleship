@@ -74,7 +74,7 @@ attacked = (e) => {
     \n- The user always goes first. To start the game, attack one of the computer's squares by clicking on a square in the board under "Computer". 
     \n- If your device allows, you will be able to hover over the squares that are available for you to attack on the Computer's board.
     \n- If you want to start a new game, click on the "New Game" button in the header to the left of the screen.
-    \n*** If the app freezes or malfunctions, refresh the page. If the error persists, contact the developer or open a pull-request at https://github.com/ismaeltovar/react-battleship/issues ***`;
+    \n*** If the app freezes or malfunctions, refresh the page. If the error persists, contact the developer or open an issue at https://github.com/ismaeltovar/react-battleship/issues ***`;
     alert(helpMsg);
   }
 
