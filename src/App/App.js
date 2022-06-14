@@ -67,6 +67,17 @@ attacked = (e) => {
       closeDrawer: true});
   }
 
+  helpDialog() {
+    let helpMsg = `Help: 
+    \n* A dialog will appear whenever you or the computer sink enough ships to win *
+    \n- The app automatically generates ships and their locations for both the player and the computer.
+    \n- The user always goes first. To start the game, attack one of the computer's squares by clicking on a square in the board under "Computer". 
+    \n- If your device allows, you will be able to hover over the squares that are available for you to attack on the Computer's board.
+    \n- If you want to start a new game, click on the "New Game" button in the header to the left of the screen.
+    \n*** If the app freezes or malfunctions, refresh the page. If the error persists, contact the developer or open a pull-request at https://github.com/ismaeltovar/react-battleship/issues ***`;
+    alert(helpMsg);
+  }
+
 componentDidMount() {
   userShips = shipsGenerator('USER');
   compShips = shipsGenerator('CPU');
@@ -86,7 +97,7 @@ componentDidUpdate() {
 render() {
   return (
     <div className="App">
-      <Drawer newGame={this.newGame.bind(this)} closeDrawer={this.state.closeDrawer}/>
+      <Drawer newGame={this.newGame.bind(this)} helpDialog={this.helpDialog.bind(this)}/>
       <main id='boards'>
         <AttackContext.Provider value={this.state}>
           <ShipsContext.Provider value={userShips}>

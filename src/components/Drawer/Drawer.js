@@ -33,6 +33,7 @@ export default class Drawer extends Component {
           <div id='drawer'>
             <nav id='d-items'>
               <button id='new-game-d-btn' className='d-btn' onClick={this.props.newGame}>New Game</button>
+              <button id='help-d-btn' className='d-btn' onClick={this.props.helpDialog}>Help</button>
             </nav>
           </div>}
       </div>
