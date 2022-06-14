@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-battleship/static/css/main.1fcdeaf2.css",
-    "main.js": "/react-battleship/static/js/main.41f5e9c3.js",
+    "main.css": "/react-battleship/static/css/main.0f5c57e8.css",
+    "main.js": "/react-battleship/static/js/main.5fd4d6b4.js",
     "static/js/787.928f5984.chunk.js": "/react-battleship/static/js/787.928f5984.chunk.js",
     "index.html": "/react-battleship/index.html",
-    "main.1fcdeaf2.css.map": "/react-battleship/static/css/main.1fcdeaf2.css.map",
-    "main.41f5e9c3.js.map": "/react-battleship/static/js/main.41f5e9c3.js.map",
+    "main.0f5c57e8.css.map": "/react-battleship/static/css/main.0f5c57e8.css.map",
+    "main.5fd4d6b4.js.map": "/react-battleship/static/js/main.5fd4d6b4.js.map",
     "787.928f5984.chunk.js.map": "/react-battleship/static/js/787.928f5984.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1fcdeaf2.css",
-    "static/js/main.41f5e9c3.js"
+    "static/css/main.0f5c57e8.css",
+    "static/js/main.5fd4d6b4.js"
   ]
 }
