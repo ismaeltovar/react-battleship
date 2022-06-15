@@ -1,5 +1,5 @@
 import React, { Component, createContext } from 'react';
-import { shipsGenerator, Board, Drawer} from '../components';
+import { shipsGenerator, Board, Header} from '../components';
 import isWinner from '../components/isWinner/isWinner';
 import consoleHelper from '../consoleHelper';
 import cpuAttack from '../cpuAttack/cpuAttack';
@@ -97,7 +97,7 @@ componentDidUpdate() {
 render() {
   return (
     <div className="App">
-      <Drawer newGame={this.newGame.bind(this)} helpDialog={this.helpDialog.bind(this)}/>
+      <Header newGame={this.newGame.bind(this)} helpDialog={this.helpDialog.bind(this)}/>
       <main id='boards'>
         <AttackContext.Provider value={this.state}>
           <ShipsContext.Provider value={userShips}>

@@ -1,0 +1,59 @@
+@import 'vars';
+
+#nav-c {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+#nav-items {
+  background-color: $nav-background;
+  height: 8vh;
+  width: 100%;
+}
+
+#nav-btns {
+  margin: 0 auto;
+  height: inherit;
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.n-btn-c {
+  height: 80%;
+  width: 30%;
+}
+
+.n-btn {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $header-btn-bg;
+  color: $header-btn-txt;
+  border: none;
+  font-weight: 700;
+  font-size: 1em;
+  
+  &:hover {
+    cursor: pointer;
+  }
+
+  & .menu:hover {
+    cursor: default;
+  }
+}
+
+.icon-c {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
