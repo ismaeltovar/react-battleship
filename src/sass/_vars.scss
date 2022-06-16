@@ -6,17 +6,20 @@ $red: rgb(255, 0, 0);
 $light-gray: rgb(211, 211, 211);
 $light-blue: rgb(160, 180, 255);
 $blue: rgb(50, 63, 255);
+$lighter-blue: rgb(65, 78, 255);
 $white: rgb(255, 255, 255);
 
 //Variables
 
 //App colors
 $background-col: $light-blue;
-$shadow-col: $black;
+$shadow-col: $darker-gray;
 $nav-background: $blue;
 $header-bg: $blue;
 $header-btn-bg: $blue;
-$header-btn-txt: $black;
+$header-btn-bg-hover: $lighter-blue;
+$header-btn-icon: $black;
+$header-btn-icon-hover: $white;
 
 //game colors
 $g-btn-col: $blue;

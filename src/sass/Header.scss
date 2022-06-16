@@ -12,6 +12,7 @@ ul li {
 
 #nav-items {
   background-color: $nav-background;
+  box-shadow: 0 .1em .8em $shadow-col;
   height: 8vh;
   width: 100%;
 }
@@ -38,13 +39,15 @@ ul li {
   justify-content: center;
   align-items: center;
   background-color: $header-btn-bg;
-  color: $header-btn-txt;
+  color: $header-btn-icon;
   border: none;
   font-weight: 700;
   font-size: 1em;
   
   &:hover {
     cursor: pointer;
+    background-color: $header-btn-bg-hover;
+    color: $header-btn-icon-hover;
   }
 
   & .menu:hover {
