@@ -40,7 +40,7 @@ class GridRow extends Component {
 	render() {
 		return(
 			<AttackContext.Consumer>
-				{({userWin, compWin, compFoundShip, userSqurAttacked, compSqurAttacked, attacked}) => {
+				{({userWin, compWin, previousSqurAtt, userSqurAttacked, compSqurAttacked, attacked}) => {
 				consoleHelper(`GridSqur: User SQ att: ${userSqurAttacked}`);
 				consoleHelper(`GridSqur: Comp SQ att: ${compSqurAttacked}`);
 				return <ShipsContext.Consumer> 

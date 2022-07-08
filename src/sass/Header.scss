@@ -11,10 +11,10 @@ ul li {
 }
 
 #nav-items {
-  background-color: $nav-background;
-  box-shadow: 0 .1em .8em $shadow-col;
   height: 8vh;
   width: 100%;
+  background-color: $nav-background;
+  box-shadow: 0 .1em .8em $shadow-col;
 }
 
 #nav-btns {
@@ -22,7 +22,6 @@ ul li {
   height: inherit;
   width: 70%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
 }
