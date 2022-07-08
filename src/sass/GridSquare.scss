@@ -6,6 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: .1em solid $g-btn-border;
+  border-radius: .2em;
 }
 
 .att-ship {
