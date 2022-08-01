@@ -28,7 +28,7 @@ ul li {
 
 .n-btn-c {
   height: 80%;
-  width: 30%;
+  width: 45%;
 }
 
 .n-btn {
@@ -47,10 +47,6 @@ ul li {
     cursor: pointer;
     background-color: $header-btn-bg-hover;
     color: $header-btn-icon-hover;
-  }
-
-  & .menu:hover {
-    cursor: default;
   }
 }
 

@@ -21,9 +21,6 @@ export default class Header extends Component {
       <nav id='nav-c'>
         <div id='nav-items'>
           <ul id='nav-btns'>
-            <li className='n-btn-c' id='n-m-c'>
-              <button id='menu-n-btn' className='n-btn' disabled={true}><Icon type="menu"/></button>
-            </li>
             <li className='n-btn-c' id='n-r-c'>
               <button id='new-game-n-btn' className='n-btn' onClick={this.props.newGame}><Icon type="repeat"/></button>
             </li>
